@@ -42,6 +42,8 @@
     
     
     
+      <link rel="stylesheet" href="../../extra.css">
+    
     
       
     
@@ -65,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#basic" class="md-skip">
+        <a href="#api-usage" class="md-skip">
           Skip to content
         </a>
       
@@ -322,23 +324,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#basic" class="md-nav__link">
-    Basic
+  <a href="#api-usage" class="md-nav__link">
+    API &amp; Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="API &amp; Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-props" class="md-nav__link">
+    Default props
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#how-it-looks" class="md-nav__link">
-    How it looks
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-use-it" class="md-nav__link">
-    How to use it
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -369,6 +370,18 @@
     <li class="md-nav__item">
       <a href="../checkbox/" class="md-nav__link">
         Checkbox
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dropdown/" class="md-nav__link">
+        Dropdown
       </a>
     </li>
   
@@ -500,23 +513,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#basic" class="md-nav__link">
-    Basic
+  <a href="#api-usage" class="md-nav__link">
+    API &amp; Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="API &amp; Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-props" class="md-nav__link">
+    Default props
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#how-it-looks" class="md-nav__link">
-    How it looks
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-to-use-it" class="md-nav__link">
-    How to use it
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -539,23 +551,60 @@
                 
                   <h1>Background</h1>
                 
-                <h2 id="basic">Basic</h2>
-<ul>
-<li>Short summary</li>
-<li>What it can be used for</li>
-</ul>
-<h2 id="how-it-looks">How it looks</h2>
-<ul>
-<li>Configs, states, themes</li>
-<li>Where it can be found in Studio</li>
-</ul>
-<h2 id="how-to-use-it">How to use it</h2>
-<ul>
-<li>General / API</li>
-<li>Defaults</li>
-<li>Takes children?</li>
-<li>Takes extra instance props?</li>
-</ul>
+                <p>A solid-color borderless frame. It provides the same background color as built-in Studio widgets, for example Explorer and Properties.</p>
+<table>
+<thead>
+<tr>
+<th>Dark</th>
+<th>Light</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><svg class="swatch" viewbox="0 0 100 100"><rect style="fill:rgb(46,46,46)" width="100%" height="100%" /></svg></td>
+<td><svg class="swatch" viewbox="0 0 100 100"><rect style="fill:rgb(255,255,255)" width="100%" height="100%" /></svg></td>
+</tr>
+</tbody>
+</table>
+<p>This is commonly used for containing the main contents of a plugin, for example as a child of a widget with the rest of the plugin elements as its children.</p>
+<pre><code>🖥️ Widget
+└───🖼️ Background
+    └───🔠 ...
+    └───🔠 ...
+</code></pre>
+<h2 id="api-usage">API &amp; Usage</h2>
+<p>This component renders a single frame. Any children passed to it will be rendered as children of the frame.</p>
+<h3 id="default-props">Default props</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Size</td>
+<td><code>UDim2.fromScale(1, 1)</code></td>
+</tr>
+<tr>
+<td>Position</td>
+<td><code>UDim2.fromScale(0, 0)</code></td>
+</tr>
+<tr>
+<td>AnchorPoint</td>
+<td><code>Vector2.new(0, 0)</code></td>
+</tr>
+<tr>
+<td>LayoutOrder</td>
+<td>0</td>
+</tr>
+<tr>
+<td>ZIndex</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
                 
               
               

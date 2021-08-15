@@ -42,6 +42,8 @@
     
     
     
+      <link rel="stylesheet" href="extra.css">
+    
     
       
     
@@ -370,6 +372,18 @@
   
   
     <li class="md-nav__item">
+      <a href="components/dropdown/" class="md-nav__link">
+        Dropdown
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="components/label/" class="md-nav__link">
         Label
       </a>
@@ -525,11 +539,15 @@
                 
                 <p>StudioComponents is a collection of <a href="https://github.com/Roblox/roact">Roact</a> implementations of common user interface elements found in Roblox Studio such as checkboxes, input fields, and scrollers. These closely match the look and functionality of their built-in counterparts and should be used to create user plugins.</p>
 <p>These components also leverage the theming API to dynamically recolor according to the user's theme setting in Studio. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This project is a work in progress - expect breaking changes!</p>
+</div>
 <h2 id="why-recreate-the-studio-interface">Why recreate the Studio interface?</h2>
 <p>Closely replicating the built-in user interface gives user plugins a familiar feel. Studio users already recognise these interface items and understand both what they signify and how to use them. </p>
 <p>Designing a plugin to fit in seamlessly with the rest of Studio also offers a more coherent user experience with less visual distraction and friction when switching between third-party and built-in tools. </p>
 <h2 id="plugins-created-with-studiocomponents">Plugins created with StudioComponents</h2>
-<p>The coherence benefit also applies between multiple developer plugins. It is preferable for user plugins to share a general appearance rather than every plugin being visually different.</p>
+<p>The coherence benefit also applies between multiple user plugins. It is preferable for user plugins to share a general appearance rather than every plugin being visually different.</p>
 <p>Using StudioComponents will align the appearance of a plugin with existing plugins, including:</p>
 <ul>
 <li>
