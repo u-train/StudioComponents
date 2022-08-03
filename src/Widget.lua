@@ -1,5 +1,6 @@
 local Packages = script.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.StudioStyleGuide)
 
 local plugin = script:FindFirstAncestorWhichIsA("Plugin")
 local withTheme = require(script.Parent.withTheme)
@@ -60,7 +61,7 @@ function Widget:render()
 	}, {
 		Main = withTheme(function(theme)
 			return Roact.createElement("Frame", {
-				BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground),
+				BackgroundColor3 = theme:GetColor(StudioStyleGuide.Color.MainBackground),
 				BorderSizePixel = 0,
 				Size = UDim2.fromScale(1, 1),
 			}, self.props[Roact.Children])

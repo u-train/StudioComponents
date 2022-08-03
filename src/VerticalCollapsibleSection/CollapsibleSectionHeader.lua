@@ -1,5 +1,6 @@
 local Packages = script.Parent.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.Parent.StudioStyleGuide)
 
 local withTheme = require(script.Parent.Parent.withTheme)
 
@@ -26,17 +27,17 @@ function CollapsibleSectionHeader:init()
 end
 
 function CollapsibleSectionHeader:render()
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StudioStyleGuide.Modifier.Default
 	if self.state.Hover then
-		modifier = Enum.StudioStyleGuideModifier.Hover
+		modifier = StudioStyleGuide.Modifier.Hover
 	end
 	return withTheme(function(theme)
 		return Roact.createElement("Frame", {
 			Active = true,
 			LayoutOrder = 0,
 			Size = UDim2.new(1, 0, 0, HEADER_HEIGHT),
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.HeaderSection, modifier),
-			BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
+			BackgroundColor3 = theme:GetColor(StudioStyleGuide.Color.HeaderSection, modifier),
+			BorderColor3 = theme:GetColor(StudioStyleGuide.Color.Border),
 			[Roact.Event.InputBegan] = self.onInputBegan,
 			[Roact.Event.InputEnded] = self.onInputEnded,
 		}, {
@@ -51,7 +52,7 @@ function CollapsibleSectionHeader:render()
 				BackgroundTransparency = 1,
 			}),
 			Label = Roact.createElement(Label, {
-				TextColorStyle = Enum.StudioStyleGuideColor.BrightText,
+				TextColorStyle = StudioStyleGuide.Color.BrightText,
 				TextXAlignment = Enum.TextXAlignment.Left,
 				Font = Constants.FontBold,
 				Text = self.props.Text,

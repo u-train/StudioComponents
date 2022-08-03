@@ -2,17 +2,25 @@ local Packages = script.Parent.Parent
 local Roact = require(Packages.Roact)
 
 local StudioThemeProvider = Roact.Component:extend("StudioThemeProvider")
-local studioSettings = settings().Studio
+local success, studioSettings = pcall(function()
+	return settings().Studio
+end)
 
-function StudioThemeProvider:init()
-	self:setState({ theme = studioSettings.Theme })
-	self._changed = studioSettings.ThemeChanged:Connect(function()
+if success then
+	function StudioThemeProvider:init()
 		self:setState({ theme = studioSettings.Theme })
-	end)
-end
+		self._changed = studioSettings.ThemeChanged:Connect(function()
+			self:setState({ theme = studioSettings.Theme })
+		end)
+	end
 
-function StudioThemeProvider:willUnmount()
-	self._changed:Disconnect()
+	function StudioThemeProvider:willUnmount()
+		self._changed:Disconnect()
+	end
+else
+	function StudioThemeProvider:init()
+		self:setState({ theme = require(script.Parent.MockStudioTheme) })
+	end
 end
 
 function StudioThemeProvider:render()

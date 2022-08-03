@@ -3,6 +3,7 @@ local UserInputService = game:GetService("UserInputService")
 
 local Packages = script.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.StudioStyleGuide)
 
 local withTheme = require(script.Parent.withTheme)
 local Slider = Roact.Component:extend("Slider")
@@ -15,14 +16,14 @@ Slider.defaultProps = {
 	Step = 0,
 	Disabled = false,
 	Background = function(props)
-		local mainModifier = Enum.StudioStyleGuideModifier.Default
+		local mainModifier = StudioStyleGuide.Modifier.Default
 		if props.Disabled then
-			mainModifier = Enum.StudioStyleGuideModifier.Disabled
+			mainModifier = StudioStyleGuide.Modifier.Disabled
 		end
 
 		return withTheme(function(theme)
 			return Roact.createElement("Frame", {
-				BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.InputFieldBackground, mainModifier),
+				BackgroundColor3 = theme:GetColor(StudioStyleGuide.Color.InputFieldBackground, mainModifier),
 				Size = UDim2.fromScale(1, 1),
 				BorderSizePixel = 0,
 			})
@@ -136,17 +137,17 @@ function Slider:render()
 	local range = props.Max - props.Min
 	local alpha = (props.Value - props.Min) / range
 
-	local handleModifier = Enum.StudioStyleGuideModifier.Default
+	local handleModifier = StudioStyleGuide.Modifier.Default
 	if props.Disabled then
-		handleModifier = Enum.StudioStyleGuideModifier.Disabled
+		handleModifier = StudioStyleGuide.Modifier.Disabled
 	elseif self.state.Hover or self.state.Dragging then
-		handleModifier = Enum.StudioStyleGuideModifier.Hover
+		handleModifier = StudioStyleGuide.Modifier.Hover
 	end
 
 	return withTheme(function(theme)
 		-- used to create a blended border color when slider is disabled
-		local handleFill = theme:GetColor(Enum.StudioStyleGuideColor.Button, handleModifier)
-		local handleBorder = theme:GetColor(Enum.StudioStyleGuideColor.Border, handleModifier)
+		local handleFill = theme:GetColor(StudioStyleGuide.Color.Button, handleModifier)
+		local handleBorder = theme:GetColor(StudioStyleGuide.Color.Border, handleModifier)
 
 		-- if we use a Frame here, the 2d studio selection rectangle will appear when dragging
 		-- we could prevent that using Active = true, but that displays the Click cursor
@@ -179,18 +180,15 @@ function Slider:render()
 				end
 			end,
 		}, {
-			BackgroundHolder = Roact.createElement("Frame", {
-				ZIndex = 0,
-				Size = UDim2.fromScale(1, 1),
-				BackgroundTransparency = 1,
-			}, {
-				Background = Roact.createElement(self.props.Background, {
+			Background = Roact.createElement(
+				self.props.Background,
+				{
 					Disabled = props.Disabled,
 					Hover = self.state.Hover,
 					Dragging = self.state.Dragging,
 					Value = self.props.Value,
-				}),
-			}),
+				}
+			),
 			Bar = Roact.createElement("Frame", {
 				ZIndex = 1,
 				Position = UDim2.fromOffset(PADDING_BAR_SIDE, 10),
@@ -199,8 +197,8 @@ function Slider:render()
 				BackgroundTransparency = props.Disabled and 0.4 or 0,
 				BackgroundColor3 = theme:GetColor(
 					-- this looks odd but provides the correct colors for both themes
-					Enum.StudioStyleGuideColor.TitlebarText,
-					Enum.StudioStyleGuideModifier.Disabled
+					StudioStyleGuide.Color.TitlebarText,
+					StudioStyleGuide.Modifier.Disabled
 				),
 			}),
 			HandleRegion = Roact.createElement("Frame", {

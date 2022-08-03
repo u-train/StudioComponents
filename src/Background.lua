@@ -1,5 +1,6 @@
 local Packages = script.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.StudioStyleGuide)
 
 local withTheme = require(script.Parent.withTheme)
 
@@ -12,7 +13,7 @@ local function Background(props)
 			LayoutOrder = props.LayoutOrder or 0,
 			ZIndex = props.ZIndex or 1,
 			BorderSizePixel = 0,
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground),
+			BackgroundColor3 = theme:GetColor(StudioStyleGuide.Color.MainBackground),
 		}, props[Roact.Children])
 	end)
 end

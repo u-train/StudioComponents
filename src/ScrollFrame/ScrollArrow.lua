@@ -1,5 +1,6 @@
 local Packages = script.Parent.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.Parent.StudioStyleGuide)
 
 local RunService = game:GetService("RunService")
 
@@ -73,11 +74,11 @@ function ScrollArrow:disconnect()
 end
 
 function ScrollArrow:render()
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StudioStyleGuide.Modifier.Default
 	if self.props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StudioStyleGuide.Modifier.Disabled
 	elseif self.state.Pressed then
-		modifier = Enum.StudioStyleGuideModifier.Pressed
+		modifier = StudioStyleGuide.Modifier.Pressed
 	end
 
 	local anchor = Vector2.new(0, 0)
@@ -103,9 +104,9 @@ function ScrollArrow:render()
 			Image = ARROW_IMAGE,
 			ImageRectSize = Vector2.new(BAR_SIZE, BAR_SIZE),
 			ImageRectOffset = imageOffset,
-			ImageColor3 = theme:GetColor(Enum.StudioStyleGuideColor.TitlebarText, modifier),
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.ScrollBar, modifier),
-			BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border, modifier),
+			ImageColor3 = theme:GetColor(StudioStyleGuide.Color.TitlebarText, modifier),
+			BackgroundColor3 = theme:GetColor(StudioStyleGuide.Color.ScrollBar, modifier),
+			BorderColor3 = theme:GetColor(StudioStyleGuide.Color.Border, modifier),
 		}
 		return self.props.Disabled and Roact.createElement("ImageLabel", baseProps)
 			or Roact.createElement(

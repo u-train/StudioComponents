@@ -1,5 +1,6 @@
 local Packages = script.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.StudioStyleGuide)
 
 local withTheme = require(script.Parent.withTheme)
 local getDragInput = require(script.getDragInput)
@@ -53,7 +54,7 @@ function ColorPicker:render()
 				Size = UDim2.new(0, 14, 1, 0),
 				AnchorPoint = Vector2.new(1, 0),
 				Position = UDim2.new(1, -6, 0, 0),
-				BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
+				BorderColor3 = theme:GetColor(StudioStyleGuide.Color.Border),
 				BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 				[Roact.Event.InputBegan] = self.barDrag.began,
 				[Roact.Event.InputChanged] = self.barDrag.changed,
@@ -69,7 +70,7 @@ function ColorPicker:render()
 					Position = UDim2.new(1, 1, 1 - val, 0),
 					BackgroundTransparency = 1,
 					Image = "rbxassetid://7507468017",
-					ImageColor3 = theme:GetColor(Enum.StudioStyleGuideColor.TitlebarText),
+					ImageColor3 = theme:GetColor(StudioStyleGuide.Color.TitlebarText),
 				}),
 			}),
 			-- see above re: TextButton for why ImageButton is used here
@@ -79,7 +80,7 @@ function ColorPicker:render()
 				Size = UDim2.new(1, -30, 1, 0),
 				Image = "rbxassetid://2752294886",
 				ClipsDescendants = true,
-				BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
+				BorderColor3 = theme:GetColor(StudioStyleGuide.Color.Border),
 				[Roact.Event.InputBegan] = self.regionDrag.began,
 				[Roact.Event.InputChanged] = self.regionDrag.changed,
 				[Roact.Event.InputEnded] = self.regionDrag.ended,

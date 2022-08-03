@@ -20,6 +20,7 @@ function VerticalCollapsibleSection:render()
 	return Roact.createElement(VerticalExpandingList, {
 		LayoutOrder = self.props.LayoutOrder,
 		ZIndex = self.props.ZIndex,
+		BorderSizePixel = self.props.BorderSizePixel,
 		Padding = 1,
 	}, {
 		Header = Roact.createElement(CollapsibleSectionHeader, {
@@ -30,6 +31,8 @@ function VerticalCollapsibleSection:render()
 		Content = not self.props.Collapsed and Roact.createElement(VerticalExpandingList, {
 			LayoutOrder = 1,
 			BorderSizePixel = 0,
+			BackgroundColorStyle = self.props.BackgroundColorStyle,
+			Padding = self.props.Padding
 		}, self.props[Roact.Children]),
 	})
 end

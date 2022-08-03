@@ -1,5 +1,6 @@
 local Packages = script.Parent.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.Parent.StudioStyleGuide)
 
 local DropdownConstants = require(script.Parent.Constants)
 local Constants = require(script.Parent.Parent.Constants)
@@ -22,9 +23,9 @@ function DropdownItem:init()
 end
 
 function DropdownItem:render()
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StudioStyleGuide.Modifier.Default
 	if self.state.Hover then
-		modifier = Enum.StudioStyleGuideModifier.Hover
+		modifier = StudioStyleGuide.Modifier.Hover
 	end
 
 	return withTheme(function(theme)
@@ -32,12 +33,12 @@ function DropdownItem:render()
 			AutoButtonColor = false,
 			LayoutOrder = self.props.LayoutOrder,
 			Size = UDim2.new(1, 0, 0, DropdownConstants.RowHeightItem),
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.EmulatorBar, modifier),
+			BackgroundColor3 = theme:GetColor(StudioStyleGuide.Color.EmulatorBar, modifier),
 			BorderSizePixel = 0,
 			Text = self.props.Item,
 			Font = Constants.Font,
 			TextSize = Constants.TextSize,
-			TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText, modifier),
+			TextColor3 = theme:GetColor(StudioStyleGuide.Color.MainText, modifier),
 			TextXAlignment = Enum.TextXAlignment.Left,
 			TextTruncate = Enum.TextTruncate.AtEnd,
 			[Roact.Event.InputBegan] = self.onInputBegan,

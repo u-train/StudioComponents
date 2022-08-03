@@ -1,5 +1,6 @@
 local Packages = script.Parent.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.Parent.StudioStyleGuide)
 
 local withTheme = require(script.Parent.Parent.withTheme)
 
@@ -70,11 +71,11 @@ function ScrollBarHandle:willUnmount()
 end
 
 function ScrollBarHandle:render()
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StudioStyleGuide.Modifier.Default
 	if self.props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StudioStyleGuide.Modifier.Disabled
 	elseif self.state.Dragging or self.state.Hover then
-		modifier = Enum.StudioStyleGuideModifier.Pressed
+		modifier = StudioStyleGuide.Modifier.Pressed
 	end
 	return withTheme(function(theme)
 		return Roact.createElement("TextButton", {
@@ -82,8 +83,8 @@ function ScrollBarHandle:render()
 			AnchorPoint = self.props.AnchorPoint,
 			Position = self.props.Position,
 			Size = self.props.Size,
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.ScrollBar, modifier),
-			BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border),
+			BackgroundColor3 = theme:GetColor(StudioStyleGuide.Color.ScrollBar, modifier),
+			BorderColor3 = theme:GetColor(StudioStyleGuide.Color.Border),
 			Text = "",
 			[Roact.Event.InputBegan] = self.onInputBegan,
 			[Roact.Event.InputChanged] = self.onInputChanged,

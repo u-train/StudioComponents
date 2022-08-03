@@ -1,5 +1,6 @@
 local Packages = script.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.StudioStyleGuide)
 
 local withTheme = require(script.Parent.withTheme)
 
@@ -9,9 +10,9 @@ VerticalExpandingList.defaultProps = {
 	LayoutOrder = 0,
 	ZIndex = 0,
 	BackgroundTransparency = 0,
-	BackgroundColorStyle = Enum.StudioStyleGuideColor.MainBackground,
+	BackgroundColorStyle = StudioStyleGuide.Color.MainBackground,
 	BorderSizePixel = 1,
-	BorderColorStyle = Enum.StudioStyleGuideColor.Border,
+	BorderColorStyle = StudioStyleGuide.Color.Border,
 	Padding = 0,
 }
 

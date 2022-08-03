@@ -1,5 +1,6 @@
 local Packages = script.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.StudioStyleGuide)
 
 local ColorPicker = require(script.Parent.ColorPicker)
 local Label = require(script.Parent.Label)
@@ -41,7 +42,7 @@ function Wrapper:render()
 				Position = UDim2.fromScale(0, 1),
 				Size = UDim2.fromScale(1, 1),
 				BackgroundTransparency = 1,
-				TextColorStyle = Enum.StudioStyleGuideColor.SubText,
+				TextColorStyle = StudioStyleGuide.Color.SubText,
 				Text = "(not part of ColorPicker component)",
 			}),
 		}),

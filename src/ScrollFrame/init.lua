@@ -1,5 +1,6 @@
 local Packages = script.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.StudioStyleGuide)
 
 local withTheme = require(script.Parent.withTheme)
 local joinDictionaries = require(script.Parent.joinDictionaries)
@@ -159,9 +160,9 @@ function ScrollFrame:didUpdate(prevProps)
 end
 
 function ScrollFrame:render()
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StudioStyleGuide.Modifier.Default
 	if self.props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StudioStyleGuide.Modifier.Disabled
 	end
 
 	local layoutProps = joinDictionaries(defaultLayout, self.props.Layout)
@@ -181,8 +182,8 @@ function ScrollFrame:render()
 			Size = self.props.Size,
 			BorderMode = Enum.BorderMode.Inset,
 			BorderSizePixel = self.props.BorderSizePixel,
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground, modifier),
-			BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border, modifier),
+			BackgroundColor3 = theme:GetColor(StudioStyleGuide.Color.MainBackground, modifier),
+			BorderColor3 = theme:GetColor(StudioStyleGuide.Color.Border, modifier),
 			[Roact.Change.AbsoluteSize] = function(rbx)
 				local border = self.props.BorderSizePixel * Vector2.new(2, 2) -- each border
 				self.setWindowSize(rbx.AbsoluteSize - border)
@@ -200,7 +201,7 @@ function ScrollFrame:render()
 					)
 				end),
 				BorderSizePixel = 0,
-				BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainBackground),
+				BackgroundColor3 = theme:GetColor(StudioStyleGuide.Color.MainBackground),
 				BackgroundTransparency = 0.25,
 			}),
 			Clipping = Roact.createElement("Frame", {
@@ -229,8 +230,8 @@ function ScrollFrame:render()
 				ZIndex = 2,
 				AnchorPoint = Vector2.new(1, 0),
 				Position = UDim2.fromScale(1, 0),
-				BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.ScrollBarBackground, modifier),
-				BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border, modifier),
+				BackgroundColor3 = theme:GetColor(StudioStyleGuide.Color.ScrollBarBackground, modifier),
+				BorderColor3 = theme:GetColor(StudioStyleGuide.Color.Border, modifier),
 				BorderSizePixel = 1,
 				Size = self.barVisible:map(function(visible)
 					local shift = visible.x and (-BAR_SIZE - 1) or 0
@@ -282,8 +283,8 @@ function ScrollFrame:render()
 				ZIndex = 2,
 				AnchorPoint = Vector2.new(0, 1),
 				Position = UDim2.fromScale(0, 1),
-				BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.ScrollBarBackground, modifier),
-				BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border, modifier),
+				BackgroundColor3 = theme:GetColor(StudioStyleGuide.Color.ScrollBarBackground, modifier),
+				BorderColor3 = theme:GetColor(StudioStyleGuide.Color.Border, modifier),
 				BorderSizePixel = 1,
 				Size = self.barVisible:map(function(visible)
 					local shift = visible.y and (-BAR_SIZE - 1) or 0

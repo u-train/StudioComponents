@@ -13,4 +13,5 @@ return {
 	VerticalExpandingList = require(script.VerticalExpandingList),
 	Widget = require(script.Widget),
 	withTheme = require(script.withTheme),
+	StudioStyleGuide = require(script.StudioStyleGuide)
 }

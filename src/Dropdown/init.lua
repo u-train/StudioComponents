@@ -1,5 +1,6 @@
 local Packages = script.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.StudioStyleGuide)
 
 local DropdownConstants = require(script.Constants)
 local Constants = require(script.Parent.Constants)
@@ -45,14 +46,14 @@ function Dropdown:init()
 end
 
 function Dropdown:render()
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StudioStyleGuide.Modifier.Default
 	if self.state.Hover then
-		modifier = Enum.StudioStyleGuideModifier.Hover
+		modifier = StudioStyleGuide.Modifier.Hover
 	end
 
-	local background = Enum.StudioStyleGuideColor.MainBackground
+	local background = StudioStyleGuide.Color.MainBackground
 	if self.state.Open or self.state.Hover then
-		background = Enum.StudioStyleGuideColor.InputFieldBackground
+		background = StudioStyleGuide.Color.InputFieldBackground
 	end
 
 	return withTheme(function(theme)
@@ -86,11 +87,11 @@ function Dropdown:render()
 				BackgroundColor3 = theme:GetColor(background, modifier),
 				BorderMode = Enum.BorderMode.Inset,
 				BorderSizePixel = 1,
-				BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.Border, modifier),
+				BorderColor3 = theme:GetColor(StudioStyleGuide.Color.Border, modifier),
 				Text = self.props.Item,
 				Font = Constants.Font,
 				TextSize = Constants.TextSize,
-				TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText, modifier),
+				TextColor3 = theme:GetColor(StudioStyleGuide.Color.MainText, modifier),
 				TextXAlignment = Enum.TextXAlignment.Left,
 			}, {
 				Padding = Roact.createElement("UIPadding", {
@@ -110,7 +111,7 @@ function Dropdown:render()
 					Position = UDim2.fromScale(0.5, 0.5),
 					Size = UDim2.fromOffset(8, 4),
 					BackgroundTransparency = 1,
-					ImageColor3 = theme:GetColor(Enum.StudioStyleGuideColor.TitlebarText, modifier),
+					ImageColor3 = theme:GetColor(StudioStyleGuide.Color.TitlebarText, modifier),
 				}),
 			}),
 			Drop = self.state.Open and Roact.createElement(ScrollFrame, {

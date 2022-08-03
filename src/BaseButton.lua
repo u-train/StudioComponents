@@ -1,5 +1,6 @@
 local Packages = script.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.StudioStyleGuide)
 
 local joinDictionaries = require(script.Parent.joinDictionaries)
 local withTheme = require(script.Parent.withTheme)
@@ -15,9 +16,9 @@ BaseButton.defaultProps = {
 	AnchorPoint = Vector2.new(0, 0),
 	Size = UDim2.fromScale(1, 1),
 	Text = "Button.defaultProps.Text",
-	TextColorStyle = Enum.StudioStyleGuideColor.ButtonText,
-	BackgroundColorStyle = Enum.StudioStyleGuideColor.Button,
-	BorderColorStyle = Enum.StudioStyleGuideColor.ButtonBorder,
+	TextColorStyle = StudioStyleGuide.Color.ButtonText,
+	BackgroundColorStyle = StudioStyleGuide.Color.Button,
+	BorderColorStyle = StudioStyleGuide.Color.ButtonBorder,
 	OnActivated = function() end,
 }
 
@@ -65,15 +66,15 @@ function BaseButton:init()
 end
 
 function BaseButton:render()
-	local modifier = Enum.StudioStyleGuideModifier.Default
+	local modifier = StudioStyleGuide.Modifier.Default
 	if self.props.Disabled then
-		modifier = Enum.StudioStyleGuideModifier.Disabled
+		modifier = StudioStyleGuide.Modifier.Disabled
 	elseif self.props.Selected then
-		modifier = Enum.StudioStyleGuideModifier.Selected
+		modifier = StudioStyleGuide.Modifier.Selected
 	elseif self.state.Pressed then
-		modifier = Enum.StudioStyleGuideModifier.Pressed
+		modifier = StudioStyleGuide.Modifier.Pressed
 	elseif self.state.Hover then
-		modifier = Enum.StudioStyleGuideModifier.Hover
+		modifier = StudioStyleGuide.Modifier.Hover
 	end
 	return withTheme(function(theme)
 		local scrubbedProps = joinDictionaries(self.props, propsToScrub, {

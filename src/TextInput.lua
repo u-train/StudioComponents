@@ -1,5 +1,6 @@
 local Packages = script.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.StudioStyleGuide)
 
 local joinDictionaries = require(script.Parent.joinDictionaries)
 local withTheme = require(script.Parent.withTheme)
@@ -60,28 +61,29 @@ function TextInput:render()
 		PaddingLeft = UDim.new(0, 5),
 		PaddingRight = UDim.new(0, 5),
 	})
-	local mainModifier = Enum.StudioStyleGuideModifier.Default
-	local borderModifier = Enum.StudioStyleGuideModifier.Default
+	local mainModifier = StudioStyleGuide.Modifier.Default
+	local borderModifier = StudioStyleGuide.Modifier.Default
 	if self.props.Disabled then
-		mainModifier = Enum.StudioStyleGuideModifier.Disabled
-		borderModifier = Enum.StudioStyleGuideModifier.Disabled
+		mainModifier = StudioStyleGuide.Modifier.Disabled
+		borderModifier = StudioStyleGuide.Modifier.Disabled
 	elseif self.state.Focused then
-		borderModifier = Enum.StudioStyleGuideModifier.Selected
+		borderModifier = StudioStyleGuide.Modifier.Selected
 	elseif self.state.Hover then
-		borderModifier = Enum.StudioStyleGuideModifier.Hover
+		borderModifier = StudioStyleGuide.Modifier.Hover
 	end
 	return withTheme(function(theme)
 		local textFieldProps = {
 			Size = self.props.Size,
 			Position = self.props.Position,
-			BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.InputFieldBackground, mainModifier),
-			BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.InputFieldBorder, borderModifier),
+			BackgroundColor3 = theme:GetColor(StudioStyleGuide.Color.InputFieldBackground, mainModifier),
+			BorderColor3 = theme:GetColor(StudioStyleGuide.Color.InputFieldBorder, borderModifier),
 			BorderMode = Enum.BorderMode.Inset,
 			LayoutOrder = self.props.LayoutOrder,
 			Font = Constants.Font,
+			BorderSizePixel = self.props.BorderSizePixel,
 			Text = self.props.Text,
 			TextSize = Constants.TextSize,
-			TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText, mainModifier),
+			TextColor3 = theme:GetColor(StudioStyleGuide.Color.MainText, mainModifier),
 			TextXAlignment = Enum.TextXAlignment.Left,
 		}
 		return self.props.Disabled and Roact.createElement("TextLabel", textFieldProps, { Padding = padding })

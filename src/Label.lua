@@ -1,5 +1,6 @@
 local Packages = script.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.StudioStyleGuide)
 
 local withTheme = require(script.Parent.withTheme)
 local joinDictionaries = require(script.Parent.joinDictionaries)
@@ -16,7 +17,7 @@ local defaultProps = {
 	Text = "Label.defaultProps.Text",
 	Font = Constants.Font,
 	TextSize = Constants.TextSize,
-	TextColorStyle = Enum.StudioStyleGuideColor.MainText,
+	TextColorStyle = StudioStyleGuide.Color.MainText,
 	BackgroundTransparency = 1,
 	BorderSizePixel = 0,
 	BorderMode = Enum.BorderMode.Inset,
@@ -27,9 +28,9 @@ local defaultProps = {
 local function Label(props)
 	return withTheme(function(theme)
 		local joinedProps = joinDictionaries(defaultProps, props)
-		local modifier = Enum.StudioStyleGuideModifier.Default
+		local modifier = StudioStyleGuide.Modifier.Default
 		if joinedProps.Disabled then
-			modifier = Enum.StudioStyleGuideModifier.Disabled
+			modifier = StudioStyleGuide.Modifier.Disabled
 		end
 		joinedProps.TextColor3 = theme:GetColor(joinedProps.TextColorStyle, modifier)
 		joinedProps.Disabled = nil

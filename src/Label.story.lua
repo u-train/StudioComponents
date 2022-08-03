@@ -1,5 +1,6 @@
 local Packages = script.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.StudioStyleGuide)
 
 local Label = require(script.Parent.Label)
 
@@ -15,7 +16,7 @@ return function(target)
 	local textElements = {}
 	for i, colorItem in ipairs(textColorItems) do
 		local name = colorItem.Name
-		if colorItem == Enum.StudioStyleGuideColor.MainText then
+		if colorItem == StudioStyleGuide.Color.MainText then
 			name ..= " (Default)"
 		end
 		textElements[i] = Roact.createElement(Label, {

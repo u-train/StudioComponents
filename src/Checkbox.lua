@@ -1,5 +1,6 @@
 local Packages = script.Parent.Parent
 local Roact = require(Packages.Roact)
+local StudioStyleGuide = require(script.Parent.StudioStyleGuide)
 
 local withTheme = require(script.Parent.withTheme)
 local Checkbox = Roact.Component:extend("Checkbox")
@@ -18,6 +19,7 @@ Checkbox.defaultProps = {
 	LayoutOrder = 0,
 	Disabled = false,
 	Alignment = Checkbox.Alignment.Left,
+	Size = UDim2.new(1, 0, 0, 15),
 }
 
 function Checkbox:init()
@@ -44,18 +46,18 @@ function Checkbox:init()
 end
 
 function Checkbox:render()
-	local mainModifier = Enum.StudioStyleGuideModifier.Default
+	local mainModifier = StudioStyleGuide.Modifier.Default
 	if self.props.Disabled then
-		mainModifier = Enum.StudioStyleGuideModifier.Disabled
+		mainModifier = StudioStyleGuide.Modifier.Disabled
 	elseif self.state.Hover then
-		mainModifier = Enum.StudioStyleGuideModifier.Hover
+		mainModifier = StudioStyleGuide.Modifier.Hover
 	end
 
-	local backModifier = Enum.StudioStyleGuideModifier.Default
+	local backModifier = StudioStyleGuide.Modifier.Default
 	if self.props.Disabled then
-		backModifier = Enum.StudioStyleGuideModifier.Disabled
+		backModifier = StudioStyleGuide.Modifier.Disabled
 	elseif self.props.Value == true then
-		backModifier = Enum.StudioStyleGuideModifier.Selected
+		backModifier = StudioStyleGuide.Modifier.Selected
 	end
 
 	local boxPositionX = 0
@@ -77,13 +79,14 @@ function Checkbox:render()
 			end
 		end
 
-		local indicatorColor = theme:GetColor(Enum.StudioStyleGuideColor.CheckedFieldIndicator, mainModifier)
+		local indicatorColor = theme:GetColor(StudioStyleGuide.Color.CheckedFieldIndicator, mainModifier)
 		if self.props.Value == Checkbox.Indeterminate then
 			indicatorColor = Color3.fromRGB(255, 255, 255)
 		end
 
 		return Roact.createElement("Frame", {
-			Size = UDim2.new(1, 0, 0, 15),
+			Size = self.props.Size,
+			Position = self.props.Position,
 			BackgroundTransparency = 1,
 			LayoutOrder = self.props.LayoutOrder,
 		}, {
@@ -98,8 +101,8 @@ function Checkbox:render()
 			Box = Roact.createElement("Frame", {
 				AnchorPoint = Vector2.new(boxPositionX, 0),
 				Position = UDim2.fromScale(boxPositionX, 0),
-				BackgroundColor3 = theme:GetColor(Enum.StudioStyleGuideColor.CheckedFieldBackground, backModifier),
-				BorderColor3 = theme:GetColor(Enum.StudioStyleGuideColor.CheckedFieldBorder, mainModifier),
+				BackgroundColor3 = theme:GetColor(StudioStyleGuide.Color.CheckedFieldBackground, backModifier),
+				BorderColor3 = theme:GetColor(StudioStyleGuide.Color.CheckedFieldBorder, mainModifier),
 				BorderMode = Enum.BorderMode.Inset,
 				Size = UDim2.fromOffset(15, 15),
 			}, {
@@ -123,7 +126,7 @@ function Checkbox:render()
 				Text = self.props.Label,
 				Font = Constants.Font,
 				TextSize = Constants.TextSize,
-				TextColor3 = theme:GetColor(Enum.StudioStyleGuideColor.MainText, mainModifier),
+				TextColor3 = theme:GetColor(StudioStyleGuide.Color.MainText, mainModifier),
 			}),
 		})
 	end)
