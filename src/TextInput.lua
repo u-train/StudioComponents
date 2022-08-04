@@ -21,6 +21,10 @@ TextInput.defaultProps = {
 	OnFocused = noop,
 	OnFocusLost = noop,
 	OnChanged = noop,
+	OnInvalidChange = noop,
+	Validate = function()
+		return true
+	end,
 }
 
 function TextInput:init()
@@ -51,7 +55,15 @@ function TextInput:init()
 		self.props.OnFocusLost(rbx.Text, enterPressed, inputObject)
 	end
 	self.onChanged = function(rbx)
-		self.props.OnChanged(rbx.Text)
+		local success, reason = self.props.Validate(rbx.Text)
+
+		if success then
+			self.props.OnChanged(rbx.Text)
+		else
+			self.props.OnInvalidChange(rbx.Text, reason)
+			-- Reset manually as self.props.Text typically won't change.
+			rbx.Text = self.props.Text
+		end
 	end
 end
 
