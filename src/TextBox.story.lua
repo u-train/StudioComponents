@@ -1,7 +1,7 @@
 local Packages = script.Parent.Parent
 local Roact = require(Packages.Roact)
 
-local TextInput = require(script.Parent.TextInput)
+local TextBox = require(script.Parent.TextBox)
 
 local Helper = Roact.Component:extend("Helper")
 
@@ -23,7 +23,7 @@ function Helper:render()
 			HorizontalAlignment = Enum.HorizontalAlignment.Center,
 			VerticalAlignment = Enum.VerticalAlignment.Center,
 		}),
-		Input0 = Roact.createElement(TextInput, {
+		Input0 = Roact.createElement(TextBox, {
 			LayoutOrder = 0,
 			PlaceholderText = "Enabled",
 			Text = self.state.text,
@@ -32,7 +32,7 @@ function Helper:render()
 			end,
 			ClearTextOnFocus = false,
 		}),
-		TextInput1 = Roact.createElement(TextInput, {
+		TextBox1 = Roact.createElement(TextBox, {
 			LayoutOrder = 1,
 			Disabled = true,
 			PlaceholderText = "Disabled",

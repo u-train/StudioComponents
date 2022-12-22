@@ -7,7 +7,7 @@ local joinDictionaries = require(script.Parent.joinDictionaries)
 local withTheme = require(script.Parent.withTheme)
 
 local Constants = require(script.Parent.Constants)
-local TextInput = Roact.Component:extend("TextInput")
+local TextBox = Roact.Component:extend("TextBox")
 
 local PLACEHOLDER_TEXT_COLOR = Color3.fromRGB(102, 102, 102) -- works for both themes
 local TEXTBOX_PADDING = 5
@@ -16,7 +16,7 @@ local CLIP_PADDING = Vector2.new(2, 0)
 
 local noop = function() end
 
-TextInput.defaultProps = {
+TextBox.defaultProps = {
 	Size = UDim2.new(1, 0, 0, 21),
 	LayoutOrder = 0,
 	Disabled = false,
@@ -101,7 +101,7 @@ local function getNextGrapheme(text, fromByte)
 	error("Misaligned byte!")
 end
 
-function TextInput:init()
+function TextBox:init()
 	self:setState({
 		Hover = false,
 		Focused = false,
@@ -150,7 +150,7 @@ function TextInput:init()
 	end
 end
 
-function TextInput:getPositionOffset()
+function TextBox:getPositionOffset()
 	local textBox = self.textBoxRef.current
 	local text = if textBox == nil then self.props.Text else textBox.Text
 
@@ -173,7 +173,7 @@ function TextInput:getPositionOffset()
 	return -TextService:GetTextSize(hiddenText, Constants.TextSize, Constants.Font, Vector2.new(math.huge, math.huge)).X
 end
 
-function TextInput:updateFirstVisibleByte()
+function TextBox:updateFirstVisibleByte()
 	-- If the text is in bound, we snap to the first visible byte.
 	-- It'll lead to a off-by-one error otherwise.
 	if self:textIsInBounds() then
@@ -272,7 +272,7 @@ function TextInput:updateFirstVisibleByte()
 	return
 end
 
-function TextInput:getPreviewText()
+function TextBox:getPreviewText()
 	local container = self.containerRef.current
 
 	if container == nil then
@@ -303,7 +303,7 @@ function TextInput:getPreviewText()
 	end
 end
 
-function TextInput:textIsInBounds()
+function TextBox:textIsInBounds()
 	local container = self.containerRef.current
 
 	-- It could be true or false, does not matter.
@@ -326,8 +326,8 @@ function TextInput:textIsInBounds()
 	return lastByte == getLastGrapheme(currentText)
 end
 
-function TextInput:didMount()
-	-- Since self.containerRef.current will be nil on the first render, TextInput:getPreviewText() defaults to previewing the whole string.
+function TextBox:didMount()
+	-- Since self.containerRef.current will be nil on the first render, TextBox:getPreviewText() defaults to previewing the whole string.
 	-- In reality, the string may need to be truncated, so it's ran again after the first render to correct that.
 
 	-- It is deferred because the absolute size of the container updates on the next frame.
@@ -348,7 +348,7 @@ function TextInput:didMount()
 	end)
 end
 
-function TextInput.getDerivedStateFromProps(nextProp, lastState)
+function TextBox.getDerivedStateFromProps(nextProp, lastState)
 	-- Horrifying edge case where a user selects text from right to left, then deletes it.
 	-- When the user deletes the selected text, it does not update the FirstVisibleByte. Consquently, the cursor suddenly points to nowhere.
 	-- Leading to an error when we calculate position offset as we never expect FirstVisibleByte to point nowhere.
@@ -366,7 +366,7 @@ function TextInput.getDerivedStateFromProps(nextProp, lastState)
 	return nil
 end
 
-function TextInput:render()
+function TextBox:render()
 	local mainModifier = Enum.StudioStyleGuideModifier.Default
 	local borderModifier = Enum.StudioStyleGuideModifier.Default
 
@@ -429,4 +429,4 @@ function TextInput:render()
 	end)
 end
 
-return TextInput
+return TextBox

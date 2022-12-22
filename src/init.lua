@@ -13,7 +13,7 @@ return {
 	Slider = require(script.Slider),
 	Splitter = require(script.Splitter),
 	TabContainer = require(script.TabContainer),
-	TextInput = require(script.TextInput),
+	TextBox = require(script.TextBox),
 	Tooltip = require(script.Tooltip),
 	VerticalCollapsibleSection = require(script.VerticalCollapsibleSection),
 	VerticalExpandingList = require(script.VerticalExpandingList),

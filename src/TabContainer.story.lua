@@ -5,7 +5,7 @@ local TabContainer = require(script.Parent.TabContainer)
 
 local Label = require(script.Parent.Label)
 local Button = require(script.Parent.Button)
-local TextInput = require(script.Parent.TextInput)
+local TextBox = require(script.Parent.TextBox)
 
 local function Centered(props)
 	return Roact.createFragment({
@@ -50,9 +50,9 @@ function Wrapper:render()
 				}),
 			},
 			{
-				Name = "TextInput",
+				Name = "TextBox",
 				Content = Roact.createElement(Centered, {}, {
-					TextInput = Roact.createElement(TextInput, {
+					TextBox = Roact.createElement(TextBox, {
 						Size = UDim2.fromOffset(100, 21),
 						OnChanged = function() end,
 						PlaceholderText = "Placeholder",
